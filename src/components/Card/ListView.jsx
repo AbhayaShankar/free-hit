@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react'
 
 import { BsChevronDown } from 'react-icons/bs'
+import Pagination from './Pagination'
 
 const ListView = () => {
   const {
@@ -22,199 +23,210 @@ const ListView = () => {
     records,
   } = useContext(ToolContext)
   return (
-    <Accordion allowMultiple allowToggle className="list">
-      {category === 'all' ? (
-        <>
-          {records.map((product, index) => {
-            return (
-              category === 'all' && (
-                <AccordionItem
-                  borderRadius={'8px'}
-                  boxShadow={'8px 8px 2px 0px #373530'}
-                  border={'1px solid #373530'}
-                  key={index}
-                  className="accordion_item"
-                >
-                  <AccordionButton>
-                    <Box padding={1} py={'3px'} flex="1" className="image">
-                      <img className="card-img" src={product.image} alt="" />
-                      <div className="accordion_btn">
-                        <h3 className="card-title">{product.productName}</h3>
-                        <div className="btn-cont">
-                          <a target="_blank" href={product.link}>
-                            <button className="visit">
-                              <font color="white" size="3">
-                                Visit
-                              </font>
-                            </button>
-                          </a>
-                          {bookmarkfilteredProducts.some(
-                            (obj) => obj['productName'] === product.productName
-                          ) ? (
-                            <button onClick={() => deleteres(product)}>
-                              <a href="#">
-                                Delete<i className="ri-bookmark-fill"></i>
-                              </a>
-                            </button>
-                          ) : (
-                            <a href="#">
-                              <button
-                                className="bookmark"
-                                onClick={() => handelBookmarkAdd(product)}
-                              >
+    <>
+      <Accordion allowMultiple allowToggle className="list">
+        {category === 'all' ? (
+          <>
+            {records.map((product, index) => {
+              return (
+                category === 'all' && (
+                  <AccordionItem
+                    borderRadius={'8px'}
+                    boxShadow={'8px 8px 2px 0px #373530'}
+                    border={'1px solid #373530'}
+                    key={index}
+                    className="accordion_item"
+                  >
+                    <AccordionButton>
+                      <Box padding={1} py={'3px'} flex="1" className="image">
+                        <img className="card-img" src={product.image} alt="" />
+                        <div className="accordion_btn">
+                          <h3 className="card-title">{product.productName}</h3>
+                          <div className="btn-cont">
+                            <a target="_blank" href={product.link}>
+                              <button className="visit">
                                 <font color="white" size="3">
-                                  Bookmark
+                                  Visit
                                 </font>
                               </button>
                             </a>
-                          )}
-                        </div>
-                      </div>
-                    </Box>
-                    <AccordionIcon
-                      as={BsChevronDown}
-                      size={5}
-                      fontWeight={'bold'}
-                    />
-                  </AccordionButton>
-                  <AccordionPanel py={2} pt={0}>
-                    <div className="text">
-                      <div className="accordion_panel">
-                        <p>{product.description}</p>
-                        <div className="btn-cont ">
-                          <a target="_blank" href={product.link}>
-                            <button className="visit">
-                              <font color="white" size="3">
-                                Visit
-                              </font>
-                            </button>
-                          </a>
-                          {bookmarkfilteredProducts.some(
-                            (obj) => obj['productName'] === product.productName
-                          ) ? (
-                            <button onClick={() => deleteres(product)}>
+                            {bookmarkfilteredProducts.some(
+                              (obj) =>
+                                obj['productName'] === product.productName
+                            ) ? (
+                              <button onClick={() => deleteres(product)}>
+                                <a href="#">
+                                  Delete<i className="ri-bookmark-fill"></i>
+                                </a>
+                              </button>
+                            ) : (
                               <a href="#">
-                                Delete<i className="ri-bookmark-fill"></i>
+                                <button
+                                  className="bookmark"
+                                  onClick={() => handelBookmarkAdd(product)}
+                                >
+                                  <font color="white" size="3">
+                                    Bookmark
+                                  </font>
+                                </button>
                               </a>
-                            </button>
-                          ) : (
-                            <a href="#">
-                              <button
-                                className="bookmark"
-                                onClick={() => handelBookmarkAdd(product)}
-                              >
+                            )}
+                          </div>
+                        </div>
+                      </Box>
+                      <AccordionIcon
+                        as={BsChevronDown}
+                        size={5}
+                        fontWeight={'bold'}
+                      />
+                    </AccordionButton>
+                    <AccordionPanel py={2} pt={0}>
+                      <div className="text">
+                        <div className="accordion_panel">
+                          <p>{product.description}</p>
+                          <div className="btn-cont ">
+                            <a target="_blank" href={product.link}>
+                              <button className="visit">
                                 <font color="white" size="3">
-                                  Bookmark
+                                  Visit
                                 </font>
                               </button>
                             </a>
-                          )}
+                            {bookmarkfilteredProducts.some(
+                              (obj) =>
+                                obj['productName'] === product.productName
+                            ) ? (
+                              <button onClick={() => deleteres(product)}>
+                                <a href="#">
+                                  Delete<i className="ri-bookmark-fill"></i>
+                                </a>
+                              </button>
+                            ) : (
+                              <a href="#">
+                                <button
+                                  className="bookmark"
+                                  onClick={() => handelBookmarkAdd(product)}
+                                >
+                                  <font color="white" size="3">
+                                    Bookmark
+                                  </font>
+                                </button>
+                              </a>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </AccordionPanel>
-                </AccordionItem>
+                    </AccordionPanel>
+                  </AccordionItem>
+                )
               )
-            )
-          })}
-        </>
-      ) : (
-        <>
-          {filteredProducts.map((product, index) => {
-            return (
-              category === product.category && (
-                <AccordionItem
-                  borderRadius={'8px'}
-                  boxShadow={'8px 8px 2px 0px #373530'}
-                  border={'1px solid #373530'}
-                  key={index}
-                  className="accordion_item"
-                >
-                  <AccordionButton>
-                    <Box padding={1} py={'3px'} flex="1" className="image">
-                      <img className="card-img" src={product.image} alt="" />
-                      <div className="accordion_btn">
-                        <h3 className="card-title">{product.productName}</h3>
-                        <div className="btn-cont">
-                          <a target="_blank" href={product.link}>
-                            <button className="visit">
-                              <font color="white" size="3">
-                                Visit
-                              </font>
-                            </button>
-                          </a>
-                          {bookmarkfilteredProducts.some(
-                            (obj) => obj['productName'] === product.productName
-                          ) ? (
-                            <button onClick={() => deleteres(product)}>
-                              <a href="#">
-                                Delete<i className="ri-bookmark-fill"></i>
-                              </a>
-                            </button>
-                          ) : (
-                            <a href="#">
-                              <button
-                                className="bookmark"
-                                onClick={() => handelBookmarkAdd(product)}
-                              >
+            })}
+          </>
+        ) : (
+          <>
+            {filteredProducts.map((product, index) => {
+              return (
+                category === product.category && (
+                  <AccordionItem
+                    borderRadius={'8px'}
+                    boxShadow={'8px 8px 2px 0px #373530'}
+                    border={'1px solid #373530'}
+                    key={index}
+                    className="accordion_item"
+                  >
+                    <AccordionButton>
+                      <Box padding={1} py={'3px'} flex="1" className="image">
+                        <img className="card-img" src={product.image} alt="" />
+                        <div className="accordion_btn">
+                          <h3 className="card-title">{product.productName}</h3>
+                          <div className="btn-cont">
+                            <a target="_blank" href={product.link}>
+                              <button className="visit">
                                 <font color="white" size="3">
-                                  Bookmark
+                                  Visit
                                 </font>
                               </button>
                             </a>
-                          )}
-                        </div>
-                      </div>
-                    </Box>
-                    <AccordionIcon
-                      as={BsChevronDown}
-                      size={5}
-                      fontWeight={'bold'}
-                    />
-                  </AccordionButton>
-                  <AccordionPanel py={2} pt={0}>
-                    <div className="text">
-                      <div className="accordion_panel">
-                        <p>{product.description}</p>
-                        <div className="btn-cont ">
-                          <a target="_blank" href={product.link}>
-                            <button className="visit">
-                              <font color="white" size="3">
-                                Visit
-                              </font>
-                            </button>
-                          </a>
-                          {bookmarkfilteredProducts.some(
-                            (obj) => obj['productName'] === product.productName
-                          ) ? (
-                            <button onClick={() => deleteres(product)}>
+                            {bookmarkfilteredProducts.some(
+                              (obj) =>
+                                obj['productName'] === product.productName
+                            ) ? (
+                              <button onClick={() => deleteres(product)}>
+                                <a href="#">
+                                  Delete<i className="ri-bookmark-fill"></i>
+                                </a>
+                              </button>
+                            ) : (
                               <a href="#">
-                                Delete<i className="ri-bookmark-fill"></i>
+                                <button
+                                  className="bookmark"
+                                  onClick={() => handelBookmarkAdd(product)}
+                                >
+                                  <font color="white" size="3">
+                                    Bookmark
+                                  </font>
+                                </button>
                               </a>
-                            </button>
-                          ) : (
-                            <a href="#">
-                              <button
-                                className="bookmark"
-                                onClick={() => handelBookmarkAdd(product)}
-                              >
+                            )}
+                          </div>
+                        </div>
+                      </Box>
+                      <AccordionIcon
+                        as={BsChevronDown}
+                        size={5}
+                        fontWeight={'bold'}
+                      />
+                    </AccordionButton>
+                    <AccordionPanel py={2} pt={0}>
+                      <div className="text">
+                        <div className="accordion_panel">
+                          <p>{product.description}</p>
+                          <div className="btn-cont ">
+                            <a target="_blank" href={product.link}>
+                              <button className="visit">
                                 <font color="white" size="3">
-                                  Bookmark
+                                  Visit
                                 </font>
                               </button>
                             </a>
-                          )}
+                            {bookmarkfilteredProducts.some(
+                              (obj) =>
+                                obj['productName'] === product.productName
+                            ) ? (
+                              <button onClick={() => deleteres(product)}>
+                                <a href="#">
+                                  Delete<i className="ri-bookmark-fill"></i>
+                                </a>
+                              </button>
+                            ) : (
+                              <a href="#">
+                                <button
+                                  className="bookmark"
+                                  onClick={() => handelBookmarkAdd(product)}
+                                >
+                                  <font color="white" size="3">
+                                    Bookmark
+                                  </font>
+                                </button>
+                              </a>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </AccordionPanel>
-                </AccordionItem>
+                    </AccordionPanel>
+                  </AccordionItem>
+                )
               )
-            )
-          })}
-        </>
+            })}
+          </>
+        )}
+      </Accordion>
+      {category === 'all' && (
+        <div className="pagination-cont">
+          <Pagination />
+        </div>
       )}
-    </Accordion>
+    </>
   )
 }
 

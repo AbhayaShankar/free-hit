@@ -6,6 +6,7 @@ import GridView from './Card/GridView'
 import ListView from './Card/ListView'
 import { BsFillGridFill, BsListUl } from 'react-icons/bs'
 import '../styles/card.css'
+import Pagination from './Card/Pagination'
 
 const Card = ({ length }) => {
   const {
@@ -42,6 +43,9 @@ const Card = ({ length }) => {
         ) : (
           <ListView />
         )}
+        {/* <div className="pagination-cont">
+          <Pagination />
+        </div> */}
       </div>
     </div>
   )

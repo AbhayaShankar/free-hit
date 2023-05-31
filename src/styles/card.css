@@ -171,4 +171,35 @@ img {
   align-items: center;
   width: 100%;
 }
+
+/* Pagination component start*/
+
+.pagination-cont {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 50px;
+  padding: 10px;
+  padding-bottom: 25px;
+}
+
+.pageBtn {
+  background-color: var(--primary-white) !important;
+  border: 1px solid var(--primary-black);
+  color: var(--primary-black);
+}
+
+.pageBtn:hover {
+  background-color: var(--primary-black) !important;
+}
+
+.pageBtn.active {
+  background-color: var(--primary-black) !important;
+  color: var(--primary-white);
+}
+
+/* 464px media query */
+
+/* Pagination component end*/
+
 /* card end */

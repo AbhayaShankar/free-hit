@@ -161,6 +161,22 @@ function App() {
   const npage = Math.ceil(filteredProducts.length / recordsPerPage)
   const numbers = [...Array(npage + 1).keys()].slice(1)
 
+  function PrevPage() {
+    if (currPage !== 1) {
+      setCurrPage(currPage - 1)
+    }
+  }
+
+  function NextPage() {
+    if (currPage !== npage) {
+      setCurrPage(currPage + 1)
+    }
+  }
+
+  function ChangeCPage(id) {
+    setCurrPage(id)
+  }
+
   // values to pass to context hook s
   const toolContextValue = {
     filterProduct,
@@ -178,6 +194,12 @@ function App() {
     bookmarkfilteredProducts,
     gridView,
     setGridView,
+    PrevPage,
+    NextPage,
+    ChangeCPage,
+    currPage,
+    setCurrPage,
+    npage,
   }
 
   return (
