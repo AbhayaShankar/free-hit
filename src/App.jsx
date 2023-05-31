@@ -16,6 +16,11 @@ function App() {
   const [category, setCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [gridView, setGridView] = useState(true)
+  const [currPage, setCurrPage] = useState(1)
+  const recordsPerPage = 40
+
+  const lastIndex = currPage * recordsPerPage
+  const firstIndex = lastIndex - recordsPerPage
 
   // all products
   const [productNames, setProductNames] = useState(
@@ -152,9 +157,16 @@ function App() {
     )
   }
 
+  const records = filteredProducts.slice(firstIndex, lastIndex)
+  const npage = Math.ceil(filteredProducts.length / recordsPerPage)
+  const numbers = [...Array(npage + 1).keys()].slice(1)
+
   // values to pass to context hook s
   const toolContextValue = {
     filterProduct,
+    records,
+    npage,
+    numbers,
     filteredProducts,
     searchTerm,
     setSearchTerm,
