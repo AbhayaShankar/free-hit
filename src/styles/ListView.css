@@ -94,6 +94,9 @@
   .accordion_panel {
     display: flex;
     flex-direction: column;
+    line-height: 18px;
+    margin-top: 8px;
+    margin-bottom: 8px;
   }
 
   .accordion_panel .btn-cont {

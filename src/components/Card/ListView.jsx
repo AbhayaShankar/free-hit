@@ -24,7 +24,7 @@ const ListView = () => {
   } = useContext(ToolContext)
   return (
     <>
-      <Accordion allowMultiple allowToggle className="list">
+      <Accordion allowToggle className="list">
         {category === 'all' ? (
           <>
             {records.map((product, index) => {
